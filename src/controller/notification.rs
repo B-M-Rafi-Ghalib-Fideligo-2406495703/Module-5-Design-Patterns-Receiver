@@ -17,3 +17,12 @@ pub async fn unsubscribe(
     Ok(Json(data))
 }
 
+#[rocket::post("/receive", data = "<data>")]
+pub async fn receive(
+    data: Json<crate::model::notification::Notification>,
+) -> bambangshop_receiver::Result<Json<crate::model::notification::Notification>> {
+    let notification = data.into_inner();
+    let saved = NotificationService::receive_notification(notification)?;
+    Ok(Json(saved))
+}
+
