@@ -80,5 +80,9 @@ impl NotificationService {
             notification,
         ))
     }
+
+    pub fn list_messages() -> bambangshop_receiver::Result<Vec<String>> {
+        Ok(crate::repository::notification::NotificationRepository::list_all_as_string())
+    }
 }
 
