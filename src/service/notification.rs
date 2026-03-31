@@ -72,5 +72,13 @@ impl NotificationService {
             )),
         }
     }
+
+    pub fn receive_notification(
+        notification: crate::model::notification::Notification,
+    ) -> bambangshop_receiver::Result<crate::model::notification::Notification> {
+        Ok(crate::repository::notification::NotificationRepository::add(
+            notification,
+        ))
+    }
 }
 
