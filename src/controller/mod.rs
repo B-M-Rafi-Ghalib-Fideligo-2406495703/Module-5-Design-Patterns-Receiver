@@ -4,8 +4,8 @@ pub mod notification;
 
 pub fn route_stage() -> AdHoc {
     return AdHoc::on_ignite("Initializing controller routes...", |rocket| async {
-        use notification::{receive, subscribe, unsubscribe};
+        use notification::{list, receive, subscribe, unsubscribe};
         rocket
-            .mount("/", routes![subscribe, unsubscribe, receive])
+            .mount("/", routes![subscribe, unsubscribe, receive, list])
     });
 }

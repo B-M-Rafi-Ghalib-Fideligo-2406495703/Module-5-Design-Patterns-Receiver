@@ -26,3 +26,9 @@ pub async fn receive(
     Ok(Json(saved))
 }
 
+#[rocket::get("/")]
+pub fn list() -> bambangshop_receiver::Result<Json<Vec<String>>> {
+    let messages = NotificationService::list_messages()?;
+    Ok(Json(messages))
+}
+
