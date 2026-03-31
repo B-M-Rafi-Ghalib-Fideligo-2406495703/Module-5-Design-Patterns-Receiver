@@ -9,3 +9,11 @@ pub async fn subscribe(
     Ok(Json(data))
 }
 
+#[rocket::get("/unsubscribe/<product_type>")]
+pub async fn unsubscribe(
+    product_type: String,
+) -> bambangshop_receiver::Result<Json<crate::model::subscriber::SubscriberRequest>> {
+    let data = NotificationService::unsubscribe(product_type).await?;
+    Ok(Json(data))
+}
+
